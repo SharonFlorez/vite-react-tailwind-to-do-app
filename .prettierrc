@@ -1,10 +1,10 @@
 {
-    "semi": true,
-    "tabWidth": 4,
-    "printWidth": 80,
-    "useTabs": false,
-    "singleQuote": false,
-    "trailingComma": "es5",
+    "attributeSort": "ASC",
     "bracketSpacing": true,
-    "attributeSort": "ASC"
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": false,
+    "tabWidth": 4,
+    "trailingComma": "none",
+    "useTabs": false
 }
