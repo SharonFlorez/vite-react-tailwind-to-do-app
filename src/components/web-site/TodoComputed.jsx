@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const TodoComputed = ({ countUncompletedTodo, removeCompletedTodo }) => {
     return (
-        <section className="p-4 flex justify-between bg-white rounded-b-md">
+        <section className="p-4 flex justify-between bg-white rounded-b-md dark:bg-gray-800">
             <span className="text-gray-400">
                 {countUncompletedTodo} items left
             </span>
