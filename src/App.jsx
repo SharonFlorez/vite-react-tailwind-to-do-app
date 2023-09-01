@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/web-site/Header";
 import TodoComputed from "./components/web-site/TodoComputed";
 import TodoCreate from "./components/web-site/TodoCreate";
@@ -6,15 +6,14 @@ import TodoFilter from "./components/web-site/TodoFilter";
 import Footer from "./components/web-site/Footer";
 import TodoList from "./components/web-site/TodoList";
 
-const initialStateTodos = [
-    { id: 1, title: "Go to the gym", completed: true },
-    { id: 2, title: "Find a new job", completed: false },
-    { id: 3, title: "Go to the doctor", completed: false },
-    { id: 4, title: "Make breakfast", completed: false }
-];
+const initialStateTodos = JSON.parse(localStorage.getItem("todos")) || [];
 
 const App = () => {
     const [todos, setTodos] = useState(initialStateTodos);
+
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
 
     const createTodo = (title) => {
         const newTodo = {
@@ -62,10 +61,25 @@ const App = () => {
     };
 
     return (
-        <div className="bg-[url('./assets/images/bg-mobile-light.jpg')] bg-no-repeat bg-contain bg-gray-300 min-h-screen pb-8 dark:bg-gray-900 dark:bg-[url('./assets/images/bg-mobile-dark.jpg')]">
+        <div
+            className="
+                bg-mobile-light
+                bg-no-repeat 
+                bg-contain 
+                bg-gray-300 
+                min-h-screen 
+                pb-8 
+                transition-all 
+                duration-1000
+                dark:bg-gray-900 
+                dark:bg-mobile-dark
+                md:bg-desktop-light
+                md:dark:bg-desktop-dark
+            "
+        >
             <Header />
 
-            <main className="container mx-auto px-4">
+            <main className="container mx-auto px-4 md:max-w-xl">
                 <TodoCreate createTodo={createTodo} />
                 <TodoList
                     todos={filteredTodo()}
