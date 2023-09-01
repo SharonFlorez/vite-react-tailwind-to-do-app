@@ -92,7 +92,9 @@ const App = () => {
                 />
                 <TodoFilter
                     changeFilterValue={changeFilterValue}
+                    countUncompletedTodo={countUncompletedTodo}
                     filter={filter}
+                    removeCompletedTodo={removeCompletedTodo}
                 />
             </main>
 

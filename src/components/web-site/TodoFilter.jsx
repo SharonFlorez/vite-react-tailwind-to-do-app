@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
 
-const TodoFilter = ({ changeFilterValue, filter }) => {
+const TodoFilter = ({
+    changeFilterValue,
+    countUncompletedTodo,
+    removeCompletedTodo,
+    filter
+}) => {
     const filterOptions = [
         { value: "all", label: "All" },
         { value: "active", label: "Active" },
@@ -15,7 +20,10 @@ const TodoFilter = ({ changeFilterValue, filter }) => {
 
     return (
         <section className="container mx-auto mt-8">
-            <div className="bg-white rounded-md p-4 flex justify-center gap-4 dark:bg-gray-800 transition-all duration-1000">
+            <div className="bg-white rounded-md p-4 flex justify-center gap-4 dark:bg-gray-800 transition-all duration-1000 md:justify-around">
+                <span className="hidden text-gray-400 md:block">
+                    {countUncompletedTodo} items left
+                </span>
                 {filterOptions.map(({ value, label }) => (
                     <button
                         key={value}
@@ -25,6 +33,12 @@ const TodoFilter = ({ changeFilterValue, filter }) => {
                         {label}
                     </button>
                 ))}
+                <button
+                    className="hidden text-gray-400 md:block"
+                    onClick={removeCompletedTodo}
+                >
+                    Clear completed
+                </button>
             </div>
         </section>
     );
@@ -32,7 +46,9 @@ const TodoFilter = ({ changeFilterValue, filter }) => {
 
 TodoFilter.propTypes = {
     changeFilterValue: PropTypes.func.isRequired,
-    filter: PropTypes.string.isRequired
+    countUncompletedTodo: PropTypes.number.isRequired,
+    filter: PropTypes.string.isRequired,
+    removeCompletedTodo: PropTypes.func.isRequired
 };
 
 export default TodoFilter;
